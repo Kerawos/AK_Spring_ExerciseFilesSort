@@ -9,3 +9,7 @@ your task is to implements methods like which allows read from file and writ to 
 
 
 [2]. 'Sort Exercise':
+you have to implement two comparators to proper work sorting method. Methods you will find here:
+"..\models\SortExercise"
+
+*-*-*-*-*-*-*-*-*-*
