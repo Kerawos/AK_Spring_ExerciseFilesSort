@@ -5,6 +5,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 import static org.junit.Assert.*;
 
@@ -23,15 +25,36 @@ public class FileExerciseTest {
 
     @Test
     public void testInOut() throws Exception {
-        File file = new File("files"+ File.separator +"FileToTest.txt");
+        File file = new File("FileToTest.txt");
         if (!file.exists()){
-            file.createNewFile();
+            try {
+                file.createNewFile();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+        } else {
+            fileExercise.clearFile(file);
         }
-        fileExercise.createFile(file);
-        fileExercise.saveIntoFile(file, fileExercise.stringToCharArray("dupa jasia"));
+        fileExercise.saveIntoFile(file, "dupa jasia");
         assertEquals(fileExercise.readFromFile(file), "dupa jasia");
-        if (file.exists()){
-            file.delete();
-        }
+        fileExercise.clearFile(file);
+        assertEquals(fileExercise.readFromFile(file), "");
+        file.delete();
+    }
+
+    @Test
+    public void automateTest() throws Exception {
+        File file = fileExercise.createNewFile("automateFile.txt");
+        assertEquals("", fileExercise.readFromFile(file));
+        fileExercise.saveIntoFile(file, "test");
+        assertEquals("test", fileExercise.readFromFile(file));
+        fileExercise.clearFile(file);
+        assertEquals("", fileExercise.readFromFile(file));
+        fileExercise.saveIntoFile(file, "test");
+        assertEquals("test", fileExercise.readFromFile(file));
+        fileExercise.saveIntoFile(file, "test");
+        assertEquals("testtest", fileExercise.readFromFile(file));
+        fileExercise.deleteExistingFile(file);
+        assertFalse(file.exists());
     }
 }

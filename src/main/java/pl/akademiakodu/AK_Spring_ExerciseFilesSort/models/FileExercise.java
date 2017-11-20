@@ -1,13 +1,15 @@
 package pl.akademiakodu.AK_Spring_ExerciseFilesSort.models;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 
 
 public class FileExercise {
-    private final String filePath = "files/FileToTest.txt";
+
     private File testFile;
 
-    public void createFile(File fileToCreate){
+    public File createNewFile(String filePath){
         testFile = new File(filePath);
         if (!testFile.exists()){
             try {
@@ -16,50 +18,44 @@ public class FileExercise {
                 e.printStackTrace();
             }
         }
+        return testFile;
     }
 
-    public void saveIntoFile(File fileToSave, char[] charListToSave){
+    public void clearFile(File fileToClear){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(fileToSave);
-            for (char c : charListToSave) {
-                fileOutputStream.write(c);
-            }
-            fileOutputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            Files.newBufferedWriter(fileToClear.toPath(), StandardOpenOption.TRUNCATE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public char[] stringToCharArray(String textToArray){
-        char[] result = new char[textToArray.length()];
-        for (int i = 0; i < textToArray.length(); i++) {
-            result[i] = (char)textToArray.indexOf(i);
-        }
-        return result;
-    }
-
-    public String readFromFile(File fileToRead){
-        if (fileToRead.exists()){
+    public String readFromFile(File fileToRead) {
+        if (fileToRead.exists()) {
             StringBuilder sb = new StringBuilder();
             try {
-                FileInputStream fileInputStream = new FileInputStream(fileToRead);
-                int content;
-                while ((content = fileInputStream.read()) != -1) {
-                    // convert to char and display it
-                    sb.append((char) content);
+                for (String s : Files.readAllLines(fileToRead.toPath())) {
+                    sb.append(s);
                 }
-                fileInputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
             return sb.toString();
-        } else {
-            return "";
+        }
+        return "";
+    }
+
+    public void saveIntoFile(File fileToSave, String textToSave){
+        try {
+            Files.write(fileToSave.toPath(), textToSave.getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-
+    public void deleteExistingFile(File file){
+        if (file.exists()){
+            file.delete();
+        }
+    }
 
 }
