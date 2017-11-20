@@ -45,6 +45,7 @@ public class FileExerciseTest {
     @Test
     public void automateTest() throws Exception {
         File file = fileExercise.createNewFile("automateFile.txt");
+        fileExercise.clearFile(file);
         assertEquals("", fileExercise.readFromFile(file));
         fileExercise.saveIntoFile(file, "test");
         assertEquals("test", fileExercise.readFromFile(file));
