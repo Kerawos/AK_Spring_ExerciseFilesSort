@@ -35,8 +35,8 @@ public class FileExerciseTest {
         } else {
             fileExercise.clearFile(file);
         }
-        fileExercise.saveIntoFile(file, "dupa jasia");
-        assertEquals(fileExercise.readFromFile(file), "dupa jasia");
+        fileExercise.saveIntoFile(file, "test");
+        assertEquals(fileExercise.readFromFile(file), "test");
         fileExercise.clearFile(file);
         assertEquals(fileExercise.readFromFile(file), "");
         file.delete();
