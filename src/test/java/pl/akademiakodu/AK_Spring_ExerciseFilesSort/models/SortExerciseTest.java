@@ -39,6 +39,7 @@ public class SortExerciseTest {
                 new Monster("Sleeping Apple", 10)
         );
         arrayComparator(actualList, expectedList);
+        System.out.println(sortExercise.listToString(expectedList));
 
         expectedList = Arrays.asList(
                 new Monster("Scary Harry", 3),
@@ -49,6 +50,7 @@ public class SortExerciseTest {
         );
         Collections.sort(actualList, scaryComparator);
         arrayComparator(actualList, expectedList);
+        System.out.println(sortExercise.listToString(expectedList));
 
         expectedList = Arrays.asList(
                 new Monster("Dark Kitty", 14),
@@ -59,6 +61,7 @@ public class SortExerciseTest {
         );
         Collections.sort(actualList, nameComparator);
         arrayComparator(actualList, expectedList);
+        System.out.println(sortExercise.listToString(expectedList));
     }
     private void arrayComparator(List<Monster> actual, List<Monster> expected){
         for (int i = 0; i < actual.size(); i++) {

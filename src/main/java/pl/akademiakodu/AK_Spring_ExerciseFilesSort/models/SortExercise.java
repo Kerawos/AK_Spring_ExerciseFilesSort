@@ -1,6 +1,7 @@
 package pl.akademiakodu.AK_Spring_ExerciseFilesSort.models;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -19,27 +20,27 @@ public class SortExercise {
 
     public String listToString(List<Monster> list){
         StringBuilder sb = new StringBuilder();
-        for (Monster monster : list) {
-            sb.append(monster.getName());
+        for (int i = 0; i < list.size(); i++) {
+            sb.append(i+1 + ". ");
+            sb.append(list.get(i).getName());
             sb.append(" = ");
-            sb.append(monster.getScary());
+            sb.append(list.get(i).getScary());
             sb.append(" *** ");
         }
         return sb.toString();
     }
+
+    public List<Monster> sortByScary(List<Monster> list){
+        Collections.sort(list, new ScaryComparator());
+        return list;
+    }
+
+    public List<Monster> sortByName(List<Monster> list){
+        Collections.sort(list, new NameComparator());
+        return list;
+    }
+
 }
 
-class NameComparator implements Comparator<Monster> {
-    @Override
-    public int compare(Monster a, Monster b) {
-        return a.getName().compareToIgnoreCase(b.getName());
-    }
-}
 
-class ScaryComparator implements Comparator<Monster> {
-    @Override
-    public int compare(Monster a, Monster b) {
-        return a.getScary() < b.getScary() ? -1 : a.getScary() == b.getScary() ? 0 : 1;
-    }
-}
 
