@@ -21,7 +21,7 @@ public class FileController {
     /**
      * Declarations
      */
-    @Autowired private FileExercise fileExercise;
+    @Autowired private FileExercise fileExercise = new FileExercise(); //init for testing file below
     private File testingFile = fileExercise.createNewFile("testFile.txt");
 
     /**
