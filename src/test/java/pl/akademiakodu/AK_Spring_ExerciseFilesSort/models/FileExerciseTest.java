@@ -3,10 +3,10 @@ package pl.akademiakodu.AK_Spring_ExerciseFilesSort.models;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import pl.akademiakodu.AK_Spring_ExerciseFilesSort.models.services.FileExercise;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import static org.junit.Assert.*;
 

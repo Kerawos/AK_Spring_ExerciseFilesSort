@@ -2,7 +2,6 @@ package pl.akademiakodu.AK_Spring_ExerciseFilesSort.models;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class SortExercise {
